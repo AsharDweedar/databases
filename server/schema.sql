@@ -4,8 +4,13 @@ USE chat;
 
 CREATE TABLE messages (
   /* Describe your table here.*/
-);
+  name TEXT ,
+  message TEXT,
+  ID int ,
+  PRIMARY KEY (ID)
+);	
 
+/*SHOW DATABASE chat;*/
 /* Create other tables and define schemas for them here! */
 
 
