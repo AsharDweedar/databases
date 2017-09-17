@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 // Create a database connection and export it from this file.
-exports.dbConnection = mysql.createConnection({
+var connection = mysql.createConnection({
       user: 'root',
       password: '',
       database: 'chat'
@@ -10,3 +10,6 @@ exports.dbConnection = mysql.createConnection({
 // and to the database "chat".
 
 
+connection.connect();
+
+module.exports = connection;

@@ -1,17 +1,28 @@
 var models = require('../models');
-var helpers = require('../helpers.js');
+//var helpers = require('../helpers.js');
 
 
 
 module.exports = {
   messages: {
     get: function (req, res) {
-    	var result = models.messages.get(function (data) {
-    		helpers.sendResponse(res , data );
+    	 models.messages.get(function (err , data) {
+    		if(err){
+                //
+            }else{
+                res.json(data);
+            }
     	});
     }, // a function which handles a get request for all messages
-    post: function (req, res) {
-    	helpers.collectData(req , function (err, data). {
+    post: function ({body}, res) {
+        var params =[ body.message, body.username , body.roomname];
+
+        models.messages.post(params , function(err,data){
+            if(err){}
+                else {res.sendStatus(201);
+                }
+        })
+    	/*helpers.collectData(req , function (err, data). {
     		if (err) {
     			helpers.sendResponse(res , 'ERROR' , 404);
     		} else {
@@ -20,7 +31,7 @@ module.exports = {
     			}) 
     	        
     		}
-    	})
+    	})*/
     	
     } // a function which handles posting a message to the database
   },
@@ -28,13 +39,25 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
-    	var result = models.users.get(req) 
-    	helpers.sendResponse(res , result );
+    	models.users.get(function(err , data){
+            if(err){}
+                else {
+                    res.json(data);
+                }
+        }) 
+    	// helpers.sendResponse(res , result );
     },
     post: function (req, res) {
-    	var result = models.users.post(req) ;
+    	 models.users.post(function(err , data){
+             if(err){}
+                else {
+                    res.sendStatus(201);
+                }
+             }) 
+         }) ;
+        
 
-    	helpers.sendResponse(res , result , 201);
+    	// helpers.sendResponse(res , result , 201);
     }
   }
 };
