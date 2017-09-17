@@ -4,16 +4,30 @@ USE chat;
 
 CREATE TABLE messages (
   /* Describe your table here.*/
-  name TEXT ,
   message TEXT,
   ID int ,
-  PRIMARY KEY (ID)
+  user_id int ,
+  room_id int ,
+  PRIMARY KEY (ID),
+  FOREIGN KEY (user_id),
+  FOREIGN KEY (room_id)
 );	
 
 /*SHOW DATABASE chat;*/
 /* Create other tables and define schemas for them here! */
+CREATE TABLE users (
+  /* Describe your table here.*/
+  name TEXT ,
+  ID int ,
+  PRIMARY KEY (ID)
+);	
 
-
+CREATE TABLE rooms (
+  /* Describe your table here.*/
+  ID int ,
+  name TEXT ,
+  PRIMARY KEY (ID)
+);
 
 
 /*  Execute this file from the command line by typing:
